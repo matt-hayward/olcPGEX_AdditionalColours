@@ -75,39 +75,36 @@ namespace olc
 			const float m = value - chroma;
 
 			float rawRed, rawGreen, rawBlue;
-			
-			if (hue < 60)
-			{
+
+			if (saturation == 0) {
+				rawRed = rawGreen = rawBlue = value;
+			}			
+			else if (hue < 60) {
 				rawRed = chroma;
 				rawGreen = x;
 				rawBlue = 0;
 			}
-			else if (60 <= hue && hue < 120)
-			{
+			else if (60 <= hue && hue < 120) {
 				rawRed = x;
 				rawGreen = chroma;
 				rawBlue = 0;
 			}
-			else if (120 <= hue && hue < 180)
-			{
+			else if (120 <= hue && hue < 180) {
 				rawRed = 0;
 				rawGreen = chroma;
 				rawBlue = x;
 			}
-			else if (180 <= hue && hue < 240)
-			{
+			else if (180 <= hue && hue < 240) {
 				rawRed = 0;
 				rawGreen = x;
 				rawBlue = chroma;
 			}
-			else if (240 <= hue && hue < 300)
-			{
+			else if (240 <= hue && hue < 300) {
 				rawRed = x;
 				rawGreen = 0;
 				rawBlue = chroma;
 			}
-			else
-			{
+			else {
 				rawRed = chroma;
 				rawGreen = 0;
 				rawBlue = x;
