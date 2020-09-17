@@ -60,5 +60,57 @@ namespace olc
 			PALE_DARK_COBALT(75, 114, 133),
 			PALE_DARK_PURPLE(83, 69, 133),
 			PALE_DARK_PINK(130, 66, 133);
+
+		// Taken from https://en.wikipedia.org/wiki/HSL_and_HSV#HSV_to_RGB
+		// Creates a new Pixel instance from hsv space (hue, saturation and value).
+		// Hue ranges from 0 to 360, saturation and value from 0 to 1.
+		static olc::Pixel FromHsv(float hue, float saturation, float value, const float alpha = 1)
+		{
+			hue = std::clamp(hue, 0.0f, 360.0f);
+			saturation = std::clamp(saturation, 0.0f, 1.0f);
+			value = std::clamp(value, 0.0f, 1.0f);
+			
+			const float chroma = value * saturation;
+			const float x = chroma * (1 - std::fabs(fmodf((hue / 60), 2) - 1));
+			const float m = value - chroma;
+
+			float rawRed, rawGreen, rawBlue;
+
+			if (saturation == 0) {
+				rawRed = rawGreen = rawBlue = value;
+			}			
+			else if (hue < 60) {
+				rawRed = chroma;
+				rawGreen = x;
+				rawBlue = 0;
+			}
+			else if (60 <= hue && hue < 120) {
+				rawRed = x;
+				rawGreen = chroma;
+				rawBlue = 0;
+			}
+			else if (120 <= hue && hue < 180) {
+				rawRed = 0;
+				rawGreen = chroma;
+				rawBlue = x;
+			}
+			else if (180 <= hue && hue < 240) {
+				rawRed = 0;
+				rawGreen = x;
+				rawBlue = chroma;
+			}
+			else if (240 <= hue && hue < 300) {
+				rawRed = x;
+				rawGreen = 0;
+				rawBlue = chroma;
+			}
+			else {
+				rawRed = chroma;
+				rawGreen = 0;
+				rawBlue = x;
+			}
+
+			return olc::PixelF(rawRed + m , rawGreen + m , rawBlue + m , alpha);
+		}
 	}
 }
