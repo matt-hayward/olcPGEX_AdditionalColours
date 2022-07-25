@@ -59,7 +59,19 @@ namespace olc
 			PALE_DARK_CYAN(78, 133, 112),
 			PALE_DARK_COBALT(75, 114, 133),
 			PALE_DARK_PURPLE(83, 69, 133),
-			PALE_DARK_PINK(130, 66, 133);
+			PALE_DARK_PINK(130, 66, 133),
+		
+			AMETHYST(153, 102, 204),
+			AMBER(255,191,0),
+			GOLDEN(255,215,0),
+			SILVER(192,192,192),
+			PLATINUM(229, 228, 226),
+			ANTIQUE_BRONZE(102, 93, 30),
+			BRONZE(205, 127, 50),
+			COPPER(184, 115, 51),
+			VERMILION(227, 66, 52),
+			INDIGO(63, 0, 255),
+			ULTRAMARINE(18, 10, 143);
 
 		// Taken from https://en.wikipedia.org/wiki/HSL_and_HSV#HSV_to_RGB
 		// Creates a new Pixel instance from hsv space (hue, saturation and value).
